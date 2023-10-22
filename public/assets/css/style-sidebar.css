@@ -1,0 +1,42 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    text-align: left;
+}
+
+.sidebar{
+    position: fixed;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background: #400042;
+    
+}
+
+.sidebar ul a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 15px;
+    color: rgb(184, 179, 179);
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: .4s;
+}
+
+ul li:hover a{
+    padding-left: 50px;
+    color: white;
+}
+
+.sidebar ul a i{
+    margin-right: 15px;
+}
