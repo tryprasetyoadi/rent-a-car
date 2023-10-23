@@ -82,7 +82,7 @@ class UserController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('dashboard')
+            return redirect()->route('/')
                 ->withSuccess('You have successfully logged in!');
         }
 
