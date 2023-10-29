@@ -7,6 +7,10 @@
             <li><a href="/booking"><i class="fa-solid fa-gauge-high"></i>Rent-a-Car</a></li>
             <li><a href=""><i class="fa-solid fa-dollar-sign"></i>Transaction</a></li>
             <li><a href=""><i class="fa-regular fa-star"></i>Rating</a></li>
+            <form action="{{ route('logout') }}" method="post">
+                <li><button type="submit"><i class="fa-regular fa-logoutr" ></i>Logout</button></li>
+            </form>
+
         </ul>
     </div>
 </main>
