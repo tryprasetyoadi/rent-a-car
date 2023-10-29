@@ -24,7 +24,7 @@
             </div>
             <div class="card-container">
                 <div class="card">
-                    <img src="img/car4.png" alt="">
+                    <img src="{{ asset('assets/img/car4.png') }}" alt="">
                     <div class="card-content">
                         <h3>Sigra<i class="fa-regular fa-heart"></i></h3>
                         <div class="info">
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/car1.png" alt="">
+                    <img src="{{ asset('assets/img/car1.png') }}" alt="">
                     <div class="card-content">
                         <h3>Pajero<i class="fa-regular fa-heart"></i></h3>
                         <div class="info">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/car2.png" alt="">
+                    <img src="{{ asset('assets/img/car2.png') }}" alt="">
                     <div class="card-content">
                         <h3>Hiace<i class="fa-regular fa-heart"></i></h3>
                         <div class="info">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/car5.png" alt="">
+                    <img src="{{ asset('assets/img/car5.png') }}" alt="">
                     <div class="card-content">
                         <h3>Sigra<i class="fa-regular fa-heart"></i></h3>
                         <div class="info">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/car6.png" alt="">
+                    <img src="{{ asset('assets/img/car6.png') }}" alt="">
                     <div class="card-content">
                         <h3>Xpander<i class="fa-regular fa-heart"></i></h3>
                         <div class="info">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="img/car7.png" alt="">
+                    <img src="{{ asset('assets/img/car7.png') }}" alt="">
                     <div class="card-content">
                         <h3>Calya<i class="fa-regular fa-heart"></i></h3>
                         <div class="info">
