@@ -41,7 +41,7 @@
 
     <div class="login-right w-50 h-100">
         <div class="picture">
-            <img src="img/rental.png">
+            <img src="{{ asset('assets/img/rental.png') }}">
             <h5>Make Your Trip Enjoyable with Rent-A-Car!</h5>
         </div>
     </div>

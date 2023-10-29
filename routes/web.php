@@ -15,8 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('profile');
+})->name('/');
+
+Route::get('/search/car', function () {
+    return view('searchcar');
+})->name('/search/car');
+
+Route::get('/wishlist', function () {
+    return view('wishlist');
+})->name('/wishlist');
+
+Route::get('/booking', function () {
+    return view('rentcar');
+})->name('/booking');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
