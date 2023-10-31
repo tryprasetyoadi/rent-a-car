@@ -8,11 +8,11 @@
             <li><a href=""><i class="fa-solid fa-dollar-sign"></i>Transaction</a></li>
             <li><a href=""><i class="fa-regular fa-star"></i>Rating</a></li>
             @if(!Auth::user()->levelling)
-            <li><a href=""><i class="fa-regular fa-star"></i>Add Car</a></li>
+            <li><a href=""><i class="fa-solid fa-car"></i>Add Car</a></li>
             @endif
             <form action="{{ route('logout') }}" method="post">
                 @csrf
-                <li><button type="submit"><i class="fa-regular fa-logoutr"></i>Logout</button></li>
+                <li><button type="submit"><i class="fa fa-sign-out"></i>Logout</button></li>
             </form>
 
         </ul>

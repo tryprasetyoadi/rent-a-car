@@ -83,15 +83,15 @@ h1{
     height: 100vh;
 }
 
-h1{
+.header h1{
     font-style: normal;
     font-weight: 600;
-    font-size: 32px;
+    font-size: 25px;
     line-height: 48px;
     color: #000000;
 }
 
-.login-form label {
+.login-form{
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -99,12 +99,14 @@ h1{
     color: #000000;
 }
 
-.login-form input{
+.login-form .col-md-6 input{
     background: #eaeaea;
     border: 1px solid #eaeaea;
     box-sizing: border-box;
-    border-radius: 8px;
+    border-radius: 15px;
     font-size: 10px;
+    margin-left: 30px;
+    width: 170%;
 }
 
 .header h1{
@@ -120,13 +122,14 @@ h1{
     color: #000000;
 }
 
-.login-form button{
-    width: 100%;
+.login-form .col-md-3{
+    width: 50%;
     height: 42px;
     background: #400042;
-    border-radius: 8px;
+    border-radius: 20px;
     color: #fff;
     margin-bottom: 10px;
+    margin-left: 70px;
 }
 
 .login-form p a{
@@ -277,7 +280,7 @@ body{
         font-family: sans-serif;
         color: #000000;
         margin-top: 20px;
-        margin-left: 420px;
+        margin-left: 430px;
         font-size: 20px;
         margin-bottom: 10px;
 }
