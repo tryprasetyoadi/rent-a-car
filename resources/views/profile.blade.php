@@ -15,7 +15,11 @@
                     <input type="text" class="form-control" id="textfield3" placeholder="UserID"><br>
                     <input type="email" class="form-control" id="textfield1" placeholder="Email"><br>
                     <input type="password" class="form-control" id="textfield4" placeholder="Password"><br>
-                    <a href="login.html"><button class="Button1">Update Profile</button></a>
+                    <a href="login.html">
+                        <button class="Button1">
+                            <span>Update Profile</span>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
