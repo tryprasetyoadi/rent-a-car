@@ -16,10 +16,14 @@ class Role
     public function handle($request, Closure $next)
     {
         $user = \App\Models\User::where('email', $request->email)->first();
-        if ($user->status == '0') {
-            return redirect('admin/dashboard');
-        } elseif ($user->status == 'mahasiswa') {
-            return redirect('mahasiswa/dashboard');
+        if ($user) {
+            if ($user->levelling == 0) {
+                return redirect('add-car');
+            } elseif ($user->levelling == 1) {
+                return redirect('/search/car');
+            }
+        } else {
+            return redirect('login');
         }
 
         return $next($request);

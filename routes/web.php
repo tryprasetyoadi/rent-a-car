@@ -16,25 +16,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('profile');
-})->name('/');
+})->name('/')->middleware('role');
 
 Route::get('/search/car', function () {
     return view('searchcar');
-})->name('/search/car');
+})->name('/search/car')->middleware('role');
 
 Route::get('/wishlist', function () {
     return view('wishlist');
-})->name('/wishlist');
+})->name('/wishlist')->middleware('role');
 
 Route::get('/booking', function () {
     return view('rentcar');
-})->name('/booking');
+})->name('/booking')->middleware('role');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
-    Route::post('/authenticate', 'authenticate')->name('authenticate');
+    Route::post('/authenticate', 'authenticate')->name('authenticate')->middleware('role');
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
 });
