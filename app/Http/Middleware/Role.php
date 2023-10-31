@@ -13,12 +13,15 @@ class Role
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle($request, Closure $next)
     {
-        if ($request->user()->levelling == $role) {
-            return $next($request);
+        $user = \App\Models\User::where('email', $request->email)->first();
+        if ($user->status == '0') {
+            return redirect('admin/dashboard');
+        } elseif ($user->status == 'mahasiswa') {
+            return redirect('mahasiswa/dashboard');
         }
 
-        return redirect('/login');
+        return $next($request);
     }
 }
