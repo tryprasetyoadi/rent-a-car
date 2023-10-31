@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,23 +17,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('profile');
-})->name('/')->middleware('role');
+})->name('/')->middleware('auth');
 
-Route::get('/search/car', function () {
-    return view('searchcar');
-})->name('/search/car')->middleware('role');
+Route::get('/search/car', [CarController::class, 'index'])->name('/search/car')->middleware('auth');
 
 Route::get('/wishlist', function () {
     return view('wishlist');
-})->name('/wishlist')->middleware('role');
+})->name('/wishlist')->middleware('auth');
 
 Route::get('/booking', function () {
     return view('rentcar');
-})->name('/booking')->middleware('role');
-
+})->name('/booking')->middleware('auth');
 Route::controller(UserController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
-    Route::post('/authenticate', 'authenticate')->name('authenticate')->middleware('role');
+    Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::post('/logout', 'logout')->name('logout');

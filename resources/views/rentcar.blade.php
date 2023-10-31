@@ -5,8 +5,9 @@
 @section('content')
 <div class="container">
     <div class="d-flex">
-        <div> @include('includes.header')</div>
+
         <div class="w-100" style="padding-left: 250px;">
+            <div> @include('includes.header')</div>
             <div class="header">
                 <div class="title">
                     <h4 style="font-weight: bold;">Rent-a-Car!</h4>
