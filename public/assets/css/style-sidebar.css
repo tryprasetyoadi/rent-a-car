@@ -16,6 +16,7 @@ body {
     left: 0;
     width: 250px;
     height: 100%;
+    text-decoration: none;
     background: #400042;
     
 }
@@ -38,5 +39,23 @@ ul li:hover a{
 }
 
 .sidebar ul a i{
+    margin-right: 15px;
+}
+
+.sidebar ul form li button{
+    border: none;
+    background: none;
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 15px;
+    color: rgb(184, 179, 179);
+    padding-left: 40px;
+    box-sizing: border-box;
+    transition: .4s;
+}
+
+.sidebar ul form li i{
     margin-right: 15px;
 }
