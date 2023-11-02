@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +22,12 @@ Route::get('/profile', function () {
 
 Route::get('/search/car', [CarController::class, 'indexSearch'])->name('/search/car')->middleware('auth');
 Route::get('/search-car', [CarController::class, 'find'])->name('/search-car')->middleware('auth');
+Route::post('/add-to-bookmarks', [WishlistController::class, 'store'])->name('/add-to-bookmarks')->middleware(('auth'));
+Route::post('/delete-bookmarks', [WishlistController::class, 'destroy'])->name('/delete-bookmarks')->middleware(('auth'));
 
-Route::get('/wishlist', function () {
-    return view('wishlist');
-})->name('/wishlist')->middleware('auth');
+
+
+Route::get('/wishlist', [WishlistController::class, 'index'])->name('/wishlist')->middleware('auth');
 
 Route::get('/booking', [CarController::class, 'index'])->name('/booking')->middleware('auth');
 Route::controller(UserController::class)->group(function () {

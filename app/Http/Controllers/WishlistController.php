@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
+use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -11,7 +14,11 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user()->id;
+        $wishlistBookmark = Car::join('bookmarks', 'bookmarks.id', '=', 'id')->where('bookmarks.id_user', $user);
+        $wishlist = Bookmark::join('cars', 'cars.id', '=', 'id_car')->get();
+        $cars = Car::latest()->get();
+        return view('wishlist', ['wishlist' => $wishlist, 'cars' => $cars, 'bookmark' => $wishlistBookmark]);
     }
 
     /**
@@ -27,7 +34,23 @@ class WishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user_id = $request->input('user_id');
+        $car_id = $request->input('car_id');
+        $class = $request->input('class');
+
+        // Insert the data into the bookmarks table
+        $find = Bookmark::where('id_user', $user_id)->where('id_car', $car_id)->first();
+
+        if ($find) {
+            return view('wishlist');
+        }
+
+        Bookmark::create([
+            'id_user' => $user_id,
+            'id_car' => $car_id,
+            'class' => $class
+        ]);
+        return redirect('/wishlist');
     }
 
     /**
@@ -57,8 +80,9 @@ class WishlistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $bookmark = Bookmark::where('id_user', $request->input('user_id'))->where('id_car', $request->input('car_id'))->delete();
+        return back()->with($bookmark);
     }
 }
