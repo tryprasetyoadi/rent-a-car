@@ -15,9 +15,9 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except([
-            'logout', 'dashboard'
-        ]);
+        // $this->middleware('guest')->except([
+        //     'logout', 'dashboard'
+        // ]);
     }
 
     /**
@@ -59,53 +59,44 @@ class UserController extends Controller
             ->withSuccess('You have successfully registered & logged in!');
     }
 
-    public function edit(Request $request)
+    public function update(Request $request)
     {
-        dd('user');
-        $isValid = $request->validate([
-            'name' => 'required|string|max:250',
-            'username' => 'required|string',
-            'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:8'
-        ]);
-        if ($isValid) {
-            $user = Auth::user()->id;
-            if ($request->input('name')) {
-                $user->name = $request->input('name');
-            }
-            if ($request->input('username')) {
-                $isUsernameAvailable = User::findOrFail($request->input('username'));
-                if ($isUsernameAvailable) {
-                    dd('error');
-                    return back()->withErrors([
-                        'username' => 'Username is already exists, please use another username!',
+
+
+        $user = Auth::user()->id;
+        $user = User::find($user);
+        if ($request->input('name')) {
+            $user->name = $request->input('name');
+        }
+        if ($request->input('username')) {
+            $isUsernameAvailable = User::find($request->input('username'));
+            if ($isUsernameAvailable) {
+                
+                return back()->withErrors([
+                    'username' => 'Username is already exists, please use another username!',
                     ])->onlyInput('username');
                 }
                 $user->username = $request->input('username');
             }
-            if ($request->input('password')) {
-                $user->password = $request->input('password');
-            }
-
-            if ($request->input('email')) {
-                $isUsernameAvailable = User::findOrFail($request->input('email'));
-                if ($isUsernameAvailable) {
-                    dd('error');
-                    return back()->withErrors([
-                        'email' => 'Email is already available in our database, please use another email!',
-                    ])->onlyInput('email');
-                }
-            }
-            $user->save();
-        } else {
-            dd('error');
-            return back()->withErrors([
-                'error' => 'Please re-check your update!'
-            ]);
+        if ($request->input('password')) {
+            $user->password = $request->input('password');
         }
-        dd('error');
+
+        if ($request->input('email')) {
+            $isUsernameAvailable = User::find($request->input('email'));
+            if ($isUsernameAvailable) {
+
+                return back()->withErrors([
+                    'email' => 'Email is already available in our database, please use another email!',
+                ])->onlyInput('email');
+            }
+        }
+        $user->save();
+
         return back();
     }
+
+    
 
     /**
      * Display a login form.

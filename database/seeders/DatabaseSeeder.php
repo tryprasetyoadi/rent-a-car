@@ -31,11 +31,6 @@ class DatabaseSeeder extends Seeder
             'levelling' => 1
         ]);
 
-        \App\Models\Car::factory()->create([
-            'name' => 'sigra',
-            'person' => 6,
-            'harga' => 100000,
-            'path' => '/assets/img/car4.png',
-        ]);
+        
     }
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('bookmarks', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('id_car')->references('id')->on('cars')->onDelete('cascade');
             $table->timestamps();
         });
     }

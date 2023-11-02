@@ -17,6 +17,20 @@ class CarController extends Controller
         return view('rentcar', ['cars' => $cars]);
     }
 
+    public function indexSearch(){
+        $cars = Car::latest()->get();
+
+        return view('searchcar', ['cars' => $cars]);
+    }
+
+    public function find(Request $request) {
+
+        
+        $cars = Car::where('name', 'like', '%'. $request->input('search') . '%')->get();
+        
+        return view('searchcar', ['cars'=>$cars]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -19,7 +19,8 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('/profile')->middleware('auth');
 
-Route::get('/search/car', [CarController::class, 'index'])->name('/search/car')->middleware('auth');
+Route::get('/search/car', [CarController::class, 'indexSearch'])->name('/search/car')->middleware('auth');
+Route::get('/search-car', [CarController::class, 'find'])->name('/search-car')->middleware('auth');
 
 Route::get('/wishlist', function () {
     return view('wishlist');
@@ -31,6 +32,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
-    Route::put('/update', 'edit')->name('update')->middleware('auth');
+    Route::post('/user/update', 'update')->name('updateUser');
     Route::post('/logout', 'logout')->name('logout');
+    
 });

@@ -12,11 +12,24 @@
             <li><a href=""><i class="fa-regular fa-star"></i>Add Car</a></li>
             @endif
             @endif
-            <form action="{{ route('logout') }}" method="post">
-                @csrf
-                <li><button type="submit"><i class="fa fa-sign-out"></i>Logout</button></li>
-            </form>
+            <li>
+                <!-- <form action="{{ route('logout') }}" method="post">
+                    @csrf -->
+                <a href="#" onclick="logout()"><i class="fa fa-sign-out"></i>Logout</a>
+                <!-- </form> -->
+
+            </li>
 
         </ul>
+        <form style="display: none; " action="{{ route('logout') }}" method="post">
+                    @csrf
+                    <button type="submit" id="logoutButton"><i class="fa fa-sign-out"></i>Logout</button>
+
+        </form>
+        <script>
+            function logout() {
+                $('#logoutButton').click();
+            }
+        </script>
     </div>
 </main>
