@@ -1,6 +1,4 @@
-<div>
-    <!-- Simplicity is an acquired taste. - Katharine Gerould -->
-</div>
+
 @extends('layouts.default')
 @section('content')
 <div class="container">

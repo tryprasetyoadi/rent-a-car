@@ -9,7 +9,7 @@
             <li><a href=""><i class="fa-regular fa-star"></i>Rating</a></li>
             @if(Auth::user())
             @if(Auth::user()->levelling==0)
-            <li><a href=""><i class="fa-regular fa-star"></i>Add Car</a></li>
+            <li><a href="/admin"><i class="fa-solid fa-user"></i>Add Car</a></li>
             @endif
             @endif
             <li>

@@ -20,6 +20,10 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('/profile')->middleware('auth');
 
+Route::get('/admin', function () {
+    return view('admin');
+})->name('/admin')->middleware('auth');
+
 Route::get('/search/car', [CarController::class, 'indexSearch'])->name('/search/car')->middleware('auth');
 Route::get('/search-car', [CarController::class, 'find'])->name('/search-car')->middleware('auth');
 Route::post('/add-to-bookmarks', [WishlistController::class, 'store'])->name('/add-to-bookmarks')->middleware(('auth'));
