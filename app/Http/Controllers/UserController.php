@@ -61,6 +61,7 @@ class UserController extends Controller
 
     public function edit(Request $request)
     {
+        dd('user');
         $isValid = $request->validate([
             'name' => 'required|string|max:250',
             'username' => 'required|string',
@@ -75,6 +76,7 @@ class UserController extends Controller
             if ($request->input('username')) {
                 $isUsernameAvailable = User::findOrFail($request->input('username'));
                 if ($isUsernameAvailable) {
+                    dd('error');
                     return back()->withErrors([
                         'username' => 'Username is already exists, please use another username!',
                     ])->onlyInput('username');
@@ -88,6 +90,7 @@ class UserController extends Controller
             if ($request->input('email')) {
                 $isUsernameAvailable = User::findOrFail($request->input('email'));
                 if ($isUsernameAvailable) {
+                    dd('error');
                     return back()->withErrors([
                         'email' => 'Email is already available in our database, please use another email!',
                     ])->onlyInput('email');
@@ -95,11 +98,12 @@ class UserController extends Controller
             }
             $user->save();
         } else {
+            dd('error');
             return back()->withErrors([
                 'error' => 'Please re-check your update!'
             ]);
         }
-
+        dd('error');
         return back();
     }
 
