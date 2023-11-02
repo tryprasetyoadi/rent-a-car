@@ -14,7 +14,7 @@ class CarController extends Controller
     {
         $cars = Car::latest()->get();
 
-        return view('searchCar', ['cars' => $cars]);
+        return view('rentcar', ['cars' => $cars]);
     }
 
     /**

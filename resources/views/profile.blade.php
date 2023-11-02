@@ -10,16 +10,19 @@
                 </div>
                 <div class="update-form">
                     <label for="file-upload" class="file-label">Add Profile Picture</label>
-                    <input type="file" id="file-upload" class="file-input" accept="image/*" style="display: none;">
-                    <input type="text" class="form-control" id="textfield2" placeholder="Name"><br>
-                    <input type="text" class="form-control" id="textfield3" placeholder="UserID"><br>
-                    <input type="email" class="form-control" id="textfield1" placeholder="Email"><br>
-                    <input type="password" class="form-control" id="textfield4" placeholder="Password"><br>
-                    <a href="login.html">
+                    <form action="{{ route('update') }}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input type="file" id="file-upload" class="file-input" accept="image/*" style="display: none;">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="textfield2" placeholder="Name"><br>
+                        <input type="text" class="fform-control @error('username') is-invalid @enderror" name="name" id="textfield3" placeholder="UserID"><br>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="textfield1" name="email" placeholder="Email"><br>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="textfield4" placeholder="Password"><br>
+
                         <button class="Button1">
                             <span>Update Profile</span>
                         </button>
-                    </a>
+                    </form>
                 </div>
             </div>
         </div>

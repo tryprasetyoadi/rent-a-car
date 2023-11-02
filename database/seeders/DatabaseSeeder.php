@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'username' => 'admin',
             'password' => Hash::make('password'),
             'levelling' => 0
         ]);
@@ -25,8 +26,16 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create([
             'name' => 'Test User 2',
             'email' => 'example@test.com',
+            'username' => 'user1',
             'password' => Hash::make('password'),
             'levelling' => 1
+        ]);
+
+        \App\Models\Car::factory()->create([
+            'name' => 'sigra',
+            'person' => 6,
+            'harga' => 100000,
+            'path' => '/assets/img/car4.png',
         ]);
     }
 }

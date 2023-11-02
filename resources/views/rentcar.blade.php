@@ -24,7 +24,20 @@
                 <div class="subtitle">Available car based on your location</div>
             </div>
             <div class="card-container">
+                @foreach ($cars as $car)
                 <div class="card">
+                    <img src="{{ asset($car->path) }}" alt="">
+                    <div class="card-content">
+                        <h3>{{ $car->name }}<i class="fa-regular fa-heart"></i></h3>
+                        <div class="info">
+                            <p><i class="fa-regular fa-user"></i> {{ $car->person}} Persons</p>
+                            <p class="price"><i class="fa-solid fa-dollar-sign"></i> Rp.{{$car->harga}}/day</p>
+                        </div>
+                        <button class="btn">Add to cart</button>
+                    </div>
+                </div>
+                @endforeach
+                <!-- <div class="card">
                     <img src="{{ asset('assets/img/car4.png') }}" alt="">
                     <div class="card-content">
                         <h3>Sigra<i class="fa-regular fa-heart"></i></h3>
@@ -89,7 +102,7 @@
                         </div>
                         <button class="btn">Add to cart</button>
                     </div>
-                </div>
+                </div> -->
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         </div>

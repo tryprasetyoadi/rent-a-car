@@ -40,12 +40,14 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:250',
+            'username' => 'required|string|max:250',
             'email' => 'required|email|max:250|unique:users',
             'password' => 'required|min:8|confirmed'
         ]);
 
         User::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
@@ -55,6 +57,50 @@ class UserController extends Controller
         $request->session()->regenerate();
         return redirect()->route('dashboard')
             ->withSuccess('You have successfully registered & logged in!');
+    }
+
+    public function edit(Request $request)
+    {
+        $isValid = $request->validate([
+            'name' => 'required|string|max:250',
+            'username' => 'required|string',
+            'email' => 'required|email|max:250|unique:users',
+            'password' => 'required|min:8'
+        ]);
+        if ($isValid) {
+            $user = Auth::user()->id;
+            if ($request->input('name')) {
+                $user->name = $request->input('name');
+            }
+            if ($request->input('username')) {
+                $isUsernameAvailable = User::findOrFail($request->input('username'));
+                if ($isUsernameAvailable) {
+                    return back()->withErrors([
+                        'username' => 'Username is already exists, please use another username!',
+                    ])->onlyInput('username');
+                }
+                $user->username = $request->input('username');
+            }
+            if ($request->input('password')) {
+                $user->password = $request->input('password');
+            }
+
+            if ($request->input('email')) {
+                $isUsernameAvailable = User::findOrFail($request->input('email'));
+                if ($isUsernameAvailable) {
+                    return back()->withErrors([
+                        'email' => 'Email is already available in our database, please use another email!',
+                    ])->onlyInput('email');
+                }
+            }
+            $user->save();
+        } else {
+            return back()->withErrors([
+                'error' => 'Please re-check your update!'
+            ]);
+        }
+
+        return back();
     }
 
     /**
@@ -76,19 +122,20 @@ class UserController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
+            'username' => 'required',
             'password' => 'required'
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->route('/')
+            return redirect()->route('/booking')
                 ->withSuccess('You have successfully logged in!');
         }
 
         return back()->withErrors([
-            'email' => 'Your provided credentials do not match in our records.',
-        ])->onlyInput('email');
+            'username' => 'Your provided credentials do not match in our records.',
+            'password' => 'Wrong password!'
+        ]);
     }
 
     /**

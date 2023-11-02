@@ -1,7 +1,7 @@
 <main>
     <div class="sidebar d-flex">
         <ul>
-            <li><a href="/"><i class="fa-solid fa-user"></i>Profile</a></li>
+            <li><a href="/profile"><i class="fa-solid fa-user"></i>Profile</a></li>
             <li><a href="/search/car"><i class="fa-solid fa-magnifying-glass"></i>Search Car</a></li>
             <li><a href="/wishlist"><i class="fa-regular fa-heart"></i>Wishlist</a></li>
             <li><a href="/booking"><i class="fa-solid fa-gauge-high"></i>Rent-a-Car</a></li>

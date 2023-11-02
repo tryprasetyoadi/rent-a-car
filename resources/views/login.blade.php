@@ -12,9 +12,9 @@
                         @csrf
                         <div class="mb-3 row">
                             <div class="col-md-6">
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="UserID">
-                                @if ($errors->has('email'))
-                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                <input type="text" class="form-control @error('username') is-invalid @enderror" id="email" name="username" value="{{ old('username') }}" placeholder="UserID">
+                                @if ($errors->has('username'))
+                                <span class="text-danger">{{ $errors->first('usrname') }}</span>
                                 @endif
                             </div>
                         </div>
