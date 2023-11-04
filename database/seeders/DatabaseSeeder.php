@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'username' => 'admin',
             'password' => Hash::make('password'),
+            'address' => 'Bandung',
             'levelling' => 0
         ]);
 
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'example@test.com',
             'username' => 'user1',
             'password' => Hash::make('password'),
+            'address' => 'Bandung',
             'levelling' => 1
         ]);
     }

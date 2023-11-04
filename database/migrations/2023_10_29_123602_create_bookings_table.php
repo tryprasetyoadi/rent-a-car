@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->integer('days');
+            $table->string('payment_methods')->default('cash');
+            $table->integer('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('id_car')->references('id')->on('cars')->onDelete('cascade');
             $table->timestamps();
         });
     }

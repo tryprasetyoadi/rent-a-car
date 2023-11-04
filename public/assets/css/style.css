@@ -266,6 +266,39 @@ body{
     float: right;
 }
 
+.info-transaksi th {
+    background-color: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    color: black;
+}
+
+
+.info-transaksi tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.card-container-transaksi{
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.card-content-transaksi{
+    width: 500px;
+    background-color: #d2d1d1;
+    border-radius: 40px;
+    overflow: hidden;
+    margin: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.card-content-info{
+    padding: 20px;
+}
+
+
 .sub-title h5{
     position: relative;
     z-index: 2;
