@@ -1,4 +1,3 @@
-
 @extends('layouts.default')
 @section('content')
 <div class="container">
@@ -8,7 +7,7 @@
             <div> @include('includes.header')</div>
             <div class="header">
                 <div class="title">
-                    <h4 style="font-weight: bold;">Rent-a-Car!</h4>
+                    <img src="{{asset('assets/img/logo.png') }}" style="width:150px;" alt="">
                 </div>
                 <div class="location-bar">
                     <span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>
