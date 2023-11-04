@@ -45,17 +45,19 @@ class UserController extends Controller
             'password' => 'required|min:8|confirmed'
         ]);
 
+
         User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'levelling' => 1
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
-        return redirect()->route('dashboard')
+        return redirect()->route('/')
             ->withSuccess('You have successfully registered & logged in!');
     }
 
@@ -71,13 +73,13 @@ class UserController extends Controller
         if ($request->input('username')) {
             $isUsernameAvailable = User::find($request->input('username'));
             if ($isUsernameAvailable) {
-                
+
                 return back()->withErrors([
                     'username' => 'Username is already exists, please use another username!',
-                    ])->onlyInput('username');
-                }
-                $user->username = $request->input('username');
+                ])->onlyInput('username');
             }
+            $user->username = $request->input('username');
+        }
         if ($request->input('password')) {
             $user->password = $request->input('password');
         }
@@ -96,7 +98,7 @@ class UserController extends Controller
         return back();
     }
 
-    
+
 
     /**
      * Display a login form.

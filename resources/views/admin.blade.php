@@ -19,18 +19,28 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @forelse($cars as $car)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Sigra</td>
-                        <td>6 Person</td>
-                        <td>400.000</td>
-                        <td><img src="{{asset('assets/img/car1.png') }}" style="width:50px;" alt=""></td>
+                        <th scope="row">{{ $car->id }}</th>
+                        <td>{{ $car->name }}</td>
+                        <td>{{ $car->person}} Person</td>
+                        <td>Rp. {{$car->harga}}</td>
+                        <td><img src="{{asset($car->path) }}" style="width:50px;" alt=""></td>
                         <td>
                             <a class="edit" href="#"><button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
                             <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Hapus</button>
                         </td>
                     </tr>
-                    
+                    @empty
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Data Empty</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

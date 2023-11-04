@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
@@ -20,9 +21,15 @@ Route::get('/profile', function () {
     return view('profile');
 })->name('/profile')->middleware('auth');
 
-Route::get('/admin', function () {
-    return view('admin');
-})->name('/admin')->middleware('auth');
+Route::get('/', function () {
+    return redirect()->route('/booking');
+})->name('/')->middleware('auth');
+
+Route::get('/transaction', function () {
+    return view('transaction');
+})->name('/transaction')->middleware('auth');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('/admin')->middleware('auth');
 
 Route::get('/search/car', [CarController::class, 'indexSearch'])->name('/search/car')->middleware('auth');
 Route::get('/search-car', [CarController::class, 'find'])->name('/search-car')->middleware('auth');
@@ -35,11 +42,11 @@ Route::get('/wishlist', [WishlistController::class, 'index'])->name('/wishlist')
 
 Route::get('/booking', [CarController::class, 'index'])->name('/booking')->middleware('auth');
 Route::controller(UserController::class)->group(function () {
+
     Route::get('/login', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::post('/user/update', 'update')->name('updateUser');
     Route::post('/logout', 'logout')->name('logout');
-    
 });

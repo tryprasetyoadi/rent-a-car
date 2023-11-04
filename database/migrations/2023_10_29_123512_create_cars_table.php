@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('person');
             $table->integer('harga');
             $table->string('path');
+            $table->boolean('is_available')->default(1);
             $table->timestamps();
         });
     }

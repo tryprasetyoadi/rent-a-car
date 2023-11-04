@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-
+        $this->call(CarSeeder::class);
         \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
@@ -30,7 +30,5 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'levelling' => 1
         ]);
-
-        
     }
 }

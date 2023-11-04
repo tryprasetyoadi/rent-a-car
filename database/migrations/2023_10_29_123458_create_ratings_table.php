@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('id_car')->references('id')->on('cars')->onDelete('cascade');
+            $table->integer('rating');
             $table->timestamps();
         });
     }

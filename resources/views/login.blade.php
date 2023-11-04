@@ -29,6 +29,9 @@
                         <div class="mb-3 row">
                             <input type="submit" class="col-md-3 offset-md-5 btn btn-primary" value="Login">
                         </div>
+                        <p class="signin text-center">Don't have account?
+                            <a href="{{ route('register') }}" class="text-decoration-none">Register here!</a>
+                        </p>
 
                     </form>
                 </div>

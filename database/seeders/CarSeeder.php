@@ -17,6 +17,7 @@ class CarSeeder extends Seeder
             'person' => 6,
             'harga' => 100000,
             'path' => '/assets/img/car4.png',
+            'is_available' => 1,
         ]);
     }
 }
