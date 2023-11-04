@@ -59,9 +59,9 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        Car::where('id', $id)->delete();
+        Car::where('id', $request->id)->delete();
         return back();
     }
 }

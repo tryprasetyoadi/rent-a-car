@@ -25,6 +25,14 @@ h1{
     color: #000000;
 }
 
+@media (max-width:991px) {
+	.sidebar-wrapper {
+		width: 100%;
+		max-width: 992px;
+		margin-bottom: 0
+	}
+}
+
 .register-form input{
     background: #eaeaea;
     border: 1px solid #eaeaea;

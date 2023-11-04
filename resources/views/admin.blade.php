@@ -28,7 +28,9 @@
                         <td><img src="{{asset($car->path) }}" style="width:50px;" alt=""></td>
                         <td>
                             <a class="edit" href="#"><button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
-                            <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Hapus</button>
+                            <form action="/admin/car/delete/{{ $car->id }}" method="get">
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Hapus</button>
+                            </form>
                         </td>
                     </tr>
                     @empty

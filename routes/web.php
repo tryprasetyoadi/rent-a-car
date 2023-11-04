@@ -30,6 +30,7 @@ Route::get('/transaction', function () {
 })->name('/transaction')->middleware('auth');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('/admin')->middleware('auth');
+Route::get('/admin/car/delete/{id}', [AdminController::class, 'destroy'])->name('/admin/car/delete/{id}')->middleware('auth');
 
 Route::get('/search/car', [CarController::class, 'indexSearch'])->name('/search/car')->middleware('auth');
 Route::get('/search-car', [CarController::class, 'find'])->name('/search-car')->middleware('auth');
