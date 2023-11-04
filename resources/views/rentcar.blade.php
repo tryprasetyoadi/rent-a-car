@@ -32,7 +32,10 @@
                             <p><i class="fa-regular fa-user"></i> {{ $car->person}} Persons</p>
                             <p class="price"><i class="fa-solid fa-dollar-sign"></i> Rp.{{$car->harga}}/day</p>
                         </div>
-                        <button class="btn">Add to cart</button>
+                        <form action="/transaction/{{$car->id}}" method="get">
+                            @csrf
+                            <button type="submit" class="btn">Add to cart</button>
+                        </form>
                     </div>
                 </div>
 

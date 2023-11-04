@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
@@ -25,9 +26,8 @@ Route::get('/', function () {
     return redirect()->route('/booking');
 })->name('/')->middleware('auth');
 
-Route::get('/transaction', function () {
-    return view('transaction');
-})->name('/transaction')->middleware('auth');
+Route::get('/transaction', [BookingController::class, 'index'])->name('/transaction')->middleware('auth');
+Route::get('/transaction/{id}', [BookingController::class, 'store'])->name('/transaction/{id}')->middleware('auth');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('/admin')->middleware('auth');
 Route::get('/admin/car/delete/{id}', [AdminController::class, 'destroy'])->name('/admin/car/delete/{id}')->middleware('auth');
