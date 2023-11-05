@@ -6,7 +6,7 @@
         <div class="w-100" style="padding-left: 250px;">
             <div> @include('includes.header')</div>
             <label class="title-dashboard">Dashboard</label><br>
-            <a class="tambah" href=""><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i>Tambah Data</button></a>
+            <a class="tambah" href="/admin/add-car"><button class="btn btn-success btn-sm"><i class="fa fa-plus"></i>Tambah Data</button></a>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -21,7 +21,7 @@
                 <tbody>
                     @forelse($cars as $car)
                     <tr>
-                        <th scope="row">{{ $car->id }}</th>
+                        <th scope="row">{{ $loop->index+1 }}</th>
                         <td>{{ $car->name }}</td>
                         <td>{{ $car->person}} Person</td>
                         <td>Rp. {{$car->harga}}</td>

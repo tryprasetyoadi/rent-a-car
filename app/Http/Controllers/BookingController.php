@@ -16,7 +16,7 @@ class BookingController extends Controller
         $id_user = Auth::user()->id;
         $booking = Booking::join('users', 'users.id', '=', 'id_user')->leftJoin('cars', 'cars.id', '=', 'id_car')
             ->where('id_user', $id_user)
-            ->select('cars.name as car_name', 'users.name as user_name', 'cars.person', 'cars.harga', 'users.address', 'days', 'payment_methods')
+            ->select('bookings.id as id', 'cars.name as car_name', 'users.name as user_name', 'cars.person', 'cars.harga', 'users.address', 'days', 'payment_methods')
             ->first();
         return view('transaction', ['transaction' => $booking]);
     }
@@ -77,8 +77,9 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Booking::where('id', $id)->delete();
+        return redirect()->route('/transaction');
     }
 }

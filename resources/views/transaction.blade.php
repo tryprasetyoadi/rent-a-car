@@ -45,6 +45,14 @@
                                 <th>: </th>
                                 <td>Rp. {{$transaction->harga}}</td>
                             </tr>
+                            <tr>
+                                <th>
+                                <form action="/transaction/delete/{{$transaction->id}}" method="get">
+                                    
+                                    <button type="submit" class="btn submit">Mark as done</button>
+                                </form>
+                                </th>
+                            </tr>
                         </table>
                     </div>
                 </div>

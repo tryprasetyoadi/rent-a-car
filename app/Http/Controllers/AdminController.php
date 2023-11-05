@@ -16,6 +16,11 @@ class AdminController extends Controller
         return view('admin', ['cars' => $cars]);
     }
 
+    public function formcar()
+    {
+        return view('addcar');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -29,7 +34,15 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cars = new Car();
+        $cars->name = $request->input('carname');
+        $cars->person = $request->input('person');
+        $cars->harga = $request->input('price');
+        $image = $request->image->getClientOriginalName();
+        $request->image->move(public_path('assets/img'), $image);
+        $cars->path = '/assets/img/' . $image;
+        $cars->save();
+        return redirect()->route('/admin');
     }
 
     /**
