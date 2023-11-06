@@ -42,7 +42,8 @@ class UserController extends Controller
             'name' => 'required|string|max:250',
             'username' => 'required|string|max:250',
             'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:8|confirmed'
+            'password' => 'required|min:8|confirmed',
+            'address' => 'required|string'
         ]);
 
 
@@ -51,7 +52,8 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'levelling' => 1
+            'levelling' => 1,
+            'Address' => $request->address
         ]);
 
         $credentials = $request->only('username', 'password');

@@ -66,11 +66,25 @@
 
                         </div>
 
+
                         <div class="form-group row">
 
 
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Comfirm Password">
 
+
+                        </div>
+
+                        <div class="form-group row">
+
+
+                            <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" required placeholder="address" autocomplete="address">
+
+                            @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
 
                         </div>
 
@@ -83,7 +97,7 @@
                         </div>
                     </form>
                     <p class="signin text-center">Already have an Account?
-                        <a href="login.html" class="text-decoration-none">Sign in</a>
+                        <a href="/login" class="text-decoration-none">Sign in</a>
                     </p>
 
                 </div>
