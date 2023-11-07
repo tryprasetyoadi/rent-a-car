@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ratings', function (Blueprint $table) {
+        Schema::create('histories', function (Blueprint $table) {
             $table->id();
+            $table->integer('days');
+            $table->string('payment_methods')->default('cash');
             $table->integer('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->integer('id_car')->references('id')->on('cars')->onDelete('cascade');
-            $table->integer('rating');
-            $table->string('comment');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ratings');
+        Schema::dropIfExists('histories');
     }
 };

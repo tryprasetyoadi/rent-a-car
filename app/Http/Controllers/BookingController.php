@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -79,7 +80,14 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        Booking::where('id', $id)->delete();
+        $booking = Booking::where('id', $id)->first();
+        History::create([
+            'days' => $booking->days,
+            'payment_methods' => $booking->payment_methods,
+            'id_user' => $booking->id_user,
+            'id_car' => $booking->id_car
+        ]);
+        $booking = $booking->delete();
         return redirect()->route('/transaction');
     }
 }

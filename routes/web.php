@@ -3,8 +3,11 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
+use App\Models\History;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +29,8 @@ Route::get('/', function () {
     return redirect()->route('/booking');
 })->name('/')->middleware('auth');
 
+Route::get('/rating', [HistoryController::class, 'index'])->name('/rating')->middleware('auth');
+Route::post('/submit-rating', [HistoryController::class, 'store'])->name('/submit-rating')->middleware('auth');
 Route::get('/admin/add-car', [AdminController::class, 'formcar'])->name('admin/add-car')->middleware('auth');
 Route::post('/admin/add-car', [AdminController::class, 'store'])->name('admin/add-car')->middleware('auth');
 

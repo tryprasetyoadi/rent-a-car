@@ -14,7 +14,7 @@
                             <div class="col-md-6">
                                 <input type="text" class="form-control @error('username') is-invalid @enderror" id="email" name="username" value="{{ old('username') }}" placeholder="UserID">
                                 @if ($errors->has('username'))
-                                <span class="text-danger">{{ $errors->first('usrname') }}</span>
+                                <span class="text-danger" style="margin-left: 30px; display: flex; margin-top: 10px;">{{ $errors->first('usrname') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                             <div class="col-md-6">
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Password">
                                 @if ($errors->has('password'))
-                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                <span class="text-danger" style="margin-left: 30px; display: flex; margin-top: 10px;">{{ $errors->first('password') }}</span>
                                 @endif
                             </div>
                         </div>

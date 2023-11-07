@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History;
 use Illuminate\Http\Request;
+use App\Models\Rating;
 
-class TransactionController extends Controller
+class HistoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+
+        $history = History::join('users', 'users.id', '=', 'id_user')->leftJoin('cars', 'cars.id', '=', 'id_car')
+            ->select('histories.id as id', 'cars.name as car_name', 'users.name as user_name', 'cars.person', 'cars.harga', 'users.address', 'days', 'payment_methods')
+            ->get();
+        return view('rating', ['histories' => $history]);
     }
 
     /**
@@ -27,7 +33,13 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Rating::create([
+            'id_user' => $request->input('id_user'),
+            'id_car' => $request->input('id_car'),
+            'rating' => $request->input('rating'),
+            'comment' => $request->input('comment')
+        ]);
+        return redirect()->route('/booking');
     }
 
     /**
