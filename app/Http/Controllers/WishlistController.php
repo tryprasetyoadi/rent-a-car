@@ -17,7 +17,7 @@ class WishlistController extends Controller
         $user = Auth::user()->id;
         $wishlistBookmark = Car::join('bookmarks', 'bookmarks.id', '=', 'id')->where('bookmarks.id_user', $user);
         $wishlist = Bookmark::join('cars', 'cars.id', '=', 'id_car')->get();
-        $cars = Car::latest()->get();
+        $cars = Car::latest()->where('is_available', 1)->get();
         return view('wishlist', ['wishlist' => $wishlist, 'cars' => $cars, 'bookmark' => $wishlistBookmark]);
     }
 

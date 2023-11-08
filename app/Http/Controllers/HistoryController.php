@@ -15,8 +15,8 @@ class HistoryController extends Controller
     {
 
         $history = History::join('users', 'users.id', '=', 'id_user')->leftJoin('cars', 'cars.id', '=', 'id_car')
-            ->select('histories.id as id', 'cars.name as car_name', 'users.name as user_name', 'cars.person', 'cars.harga', 'users.address', 'days', 'payment_methods')
-            ->get();
+            ->select('histories.id as id', 'users.id as id_user', 'cars.id as id_car', 'cars.name as car_name', 'users.name as user_name', 'cars.person', 'cars.harga', 'users.address', 'days', 'payment_methods')
+            ->get()->take(1);
         return view('rating', ['histories' => $history]);
     }
 
@@ -33,12 +33,15 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
+
         Rating::create([
             'id_user' => $request->input('id_user'),
             'id_car' => $request->input('id_car'),
             'rating' => $request->input('rating'),
             'comment' => $request->input('comment')
         ]);
+
+        History::where('id_user', $request->input('id_user'))->where('id_car', $request->input('id_car'))->first()->delete();
         return redirect()->route('/booking');
     }
 

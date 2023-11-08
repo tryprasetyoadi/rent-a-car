@@ -12,23 +12,25 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::latest()->get();
+        $cars = Car::latest()->where('is_available', 1)->get();
 
         return view('rentcar', ['cars' => $cars]);
     }
 
-    public function indexSearch(){
-        $cars = Car::latest()->get();
+    public function indexSearch()
+    {
+        $cars = Car::latest()->where('is_available', 1)->get();
 
         return view('searchcar', ['cars' => $cars]);
     }
 
-    public function find(Request $request) {
+    public function find(Request $request)
+    {
 
-        
-        $cars = Car::where('name', 'like', '%'. $request->input('search') . '%')->get();
-        
-        return view('searchcar', ['cars'=>$cars]);
+
+        $cars = Car::where('name', 'like', '%' . $request->input('search') . '%')->where('is_available', 1)->get();
+
+        return view('searchcar', ['cars' => $cars]);
     }
 
     /**

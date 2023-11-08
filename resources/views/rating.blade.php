@@ -1,6 +1,7 @@
 @extends('layouts.default')
 @section('content')
 
+
 <div class="container">
     <div class="d-flex">
         <div> @include('includes.header')</div>
@@ -21,16 +22,22 @@
                 <div class="card-rating">
 
                     <div class="card-content-rat">
-                        <p>Transaction ID : #{{$history->id}}<br>Car Name : {{$history->car_name}}<br>Payment Method : {{$history->payment_methods}}</p>
-                        <div class="info-rating">
-                            <i class="icon far fa-star" data-user-id="{{$history->id_user}}" data-history-id="{{ $history->id }}"></i>
-                            <i class="icon far fa-star" data-user-id="{{$history->id_user}}" data-history-id="{{ $history->id }}"></i>
-                            <i class="icon far fa-star" data-user-id="{{$history->id_user}}" data-history-id="{{ $history->id }}"></i>
-                            <i class="icon far fa-star" data-user-id="{{$history->id_user}}" data-history-id="{{ $history->id }}"></i>
-                            <i class="icon far fa-star" data-user-id="{{$history->id_user}}" data-history-id="{{ $history->id }}"></i>
-                        </div>
-                        <input id="comment" type="text" style="width: 300px; height: 100px; border-radius: 30px;"><br>
-                        <button class="btn" onclick="submit()">Give Rating</button>
+                        <form action="{{ route('/submit-rating') }}" method="POST">
+                            <p>Transaction ID : #{{$history->id}}<br>Car Name : {{$history->car_name}}<br>Payment Method : {{$history->payment_methods}}</p>
+                            @csrf
+                            <div class="info-rating">
+                                <input type="hidden" name="id_car" value="{{$history->id_car}}">
+                                <input type="hidden" name="id_user" value="{{$history->id_user}}">
+                                <i class="icon far fa-star"></i>
+                                <i class="icon far fa-star"></i>
+                                <i class="icon far fa-star"></i>
+                                <i class="icon far fa-star"></i>
+                                <i class="icon far fa-star"></i>
+                                <input type="hidden" name="rating" id="rating">
+                            </div>
+                            <input id="comment" name="comment" type="text" style="width: 300px; height: 100px; border-radius: 30px;"><br>
+                            <button type="submit" class="btn" id="submit">Give Rating</button>
+                        </form>
                     </div>
 
                 </div>
@@ -42,11 +49,15 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <script>
+                let lastIndexClicked = -1;
+                let csrfToken = $('meta[name="csrf-token"]').attr('content');
+                let carID = $(this).data('car-id');
+                let userID = $(this).data('user-id');
+                let comment = document.getElementById('comment');
+
                 $(document).ready(function() {
-                    var lastIndexClicked = -1;
-                    var historyID = $(this).data('history-id');
-                    var userId = $(this).data('user-id');
-                    var comment = document.getElementById('comment');
+
+
                     // Tambahkan event click pada ikon
                     $('.icon').click(function() {
                         var index = $(this).index();
@@ -64,31 +75,13 @@
                         }
 
                         lastIndexClicked = index;
+                        document.getElementById("rating").value = lastIndexClicked - 1;
                     });
+
+
+
+
                 });
-
-                function submit() {
-                    $.ajax({
-                        type: 'POST',
-                        url: '/submit-rating', // Replace with your Laravel route or URL
-                        data: {
-                            rating: lastIndexClicked,
-                            car_id: historyID,
-                            user_id: userID,
-                            comment: comment,
-                        },
-                        headers: {
-                            'X-CSRF-TOKEN': csrfToken // Include the CSRF token in the headers
-                        },
-                        success: function(response) {
-                            // Handle the success response if needed
-                        },
-                        error: function(error) {
-                            // Handle errors if the request fails
-                        }
-                    });
-
-                }
             </script>
 
         </div>

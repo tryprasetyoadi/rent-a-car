@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\History;
+use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,9 +44,8 @@ class BookingController extends Controller
                 'id_user' => $id_user,
                 'id_car' => $request->id,
             ]);
-            return back();
-        } else if ($booking) {
-            $booking->update(['days' => $booking->days += 1]);
+            $cars = Car::where('id', $request->id)->update(['is_available' => 0]);
+
             return back();
         }
         return back()->withErrors('You are not allowed booking other car during you ordered car');
@@ -87,7 +87,9 @@ class BookingController extends Controller
             'id_user' => $booking->id_user,
             'id_car' => $booking->id_car
         ]);
+        Car::where('id', $booking->id_car)->update(['is_available' => 1]);
         $booking = $booking->delete();
+
         return redirect()->route('/transaction');
     }
 }
