@@ -46,46 +46,79 @@
             @empty
             <h3 class="text-center">Data is Empty</h3>
             @endforelse
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script>
-                let lastIndexClicked = -1;
-                let csrfToken = $('meta[name="csrf-token"]').attr('content');
-                let carID = $(this).data('car-id');
-                let userID = $(this).data('user-id');
-                let comment = document.getElementById('comment');
-
-                $(document).ready(function() {
+            <label class="title-dashboard">Latest Rating</label><br>
 
 
-                    // Tambahkan event click pada ikon
-                    $('.icon').click(function() {
-                        var index = $(this).index();
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Car Name</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Comment</th>
 
-                        // If a star below a previously clicked star is clicked, reset the above star to 'far'
-                        if (lastIndexClicked > index) {
-                            for (var i = lastIndexClicked; i >= index; i--) {
-                                $('.icon').eq(i).removeClass('fas').addClass('far');
-                            }
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @forelse($ratings as $rating)
+                    <tr>
+                        <th scope="row">{{ $loop->index+1 }}</th>
+                        <td>{{ $rating->car_name }}</td>
+                        <td>{{ $rating->user_name }}</td>
+                        <td><i class="fas fa-star"></i>{{$rating->rating}}</td>
+                        <td>{{$rating->comment}}</td>
+
+                    </tr>
+                    @empty
+                    <h3 class="text-center">Data is Empty</h3>
+                    @endforelse
+                </tbody>
+
+            </table>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            let csrfToken = $('meta[name="csrf-token"]').attr('content');
+            let carID = $(this).data('car-id');
+            let userID = $(this).data('user-id');
+            let comment = document.getElementById('comment');
+
+            $(document).ready(function() {
+
+
+
+                $('.icon').click(function() {
+                    var index = $(this).index();
+                    var lastIndexClicked = -1;
+
+                    if (lastIndexClicked >= index) {
+                        for (var i = lastIndexClicked; i >= index; i--) {
+                            $('.icon').eq(i).removeClass('fas').addClass('far');
                         }
+                    }
 
-                        // Fill stars up to the selected icon
+                    if (lastIndexClicked <= index) {
                         for (var i = 0; i <= index; i++) {
                             $('.icon').eq(i).removeClass('far').addClass('fas');
                         }
+                    }
 
-                        lastIndexClicked = index;
-                        document.getElementById("rating").value = lastIndexClicked - 1;
-                    });
-
-
-
-
+                    lastIndexClicked = index;
+                    document.getElementById("rating").value = lastIndexClicked - 1;
                 });
-            </script>
 
-        </div>
+
+
+
+            });
+        </script>
+
     </div>
+</div>
 </div>
 
 </div>

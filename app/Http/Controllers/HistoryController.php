@@ -17,12 +17,18 @@ class HistoryController extends Controller
         $history = History::join('users', 'users.id', '=', 'id_user')->leftJoin('cars', 'cars.id', '=', 'id_car')
             ->select('histories.id as id', 'users.id as id_user', 'cars.id as id_car', 'cars.name as car_name', 'users.name as user_name', 'cars.person', 'cars.harga', 'users.address', 'days', 'payment_methods')
             ->get()->take(1);
-        return view('rating', ['histories' => $history]);
+
+        $rating = Rating::join('users', 'users.id', '=', 'id_user')->leftJoin('cars', 'cars.id', '=', 'id_car')
+            ->select('users.id as id_user', 'cars.id as id_car', 'cars.name as car_name', 'users.name as user_name', 'ratings.rating', 'ratings.comment')
+            ->get();
+        return view('rating', ['histories' => $history, 'ratings' => $rating]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
+
+
     public function create()
     {
         //
