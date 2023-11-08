@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->integer('id_car')->references('id')->on('cars')->onDelete('cascade');
             $table->integer('rating');
-            $table->string('comment');
+            $table->string('comment')->nullable();
             $table->timestamps();
         });
     }
