@@ -72,7 +72,7 @@
 
                     </tr>
                     @empty
-                    <h3 class="text-center">Data is Empty</h3>
+                    <td class="text-center" colspan="5">Data is Empty</td>
                     @endforelse
                 </tbody>
 

@@ -52,17 +52,33 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $car = Car::find($id);
+        return view('editcar', ['car' => $car]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id, Request $request)
     {
-        //
+        $car = Car::find($id);
+        if ($request->image) {
+            $image = $request->image->getClientOriginalName();
+            $request->image->move(public_path('assets/img'), $image);
+            $car->update(['path' => '/assets/img/' . $image]);
+        }
+        $car->update([
+            'name' => $request->input('name'),
+            'person' => $request->input('person'),
+            'harga' => $request->input('price'),
+
+        ]);
+
+
+
+        return redirect()->route('/admin');
     }
 
     /**

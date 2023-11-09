@@ -11,8 +11,8 @@
                 <div class="update-form">
                     <form action="{{ route('admin/add-car') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        
-                        
+
+
                         <input type="text" class="form-control field @error('carname') is-invalid @enderror" name="carname" id="textfield2" placeholder="Car Name"><br>
                         <input type="text" class="fform-control field @error('person') is-invalid @enderror" name="person" id="textfield3" placeholder="Person"><br>
                         <input type="number" class="form-control field @error('price') is-invalid @enderror" id="textfield1" name="price" placeholder="price"><br>
@@ -28,8 +28,6 @@
     </div>
 </div>
 
-</div>
 
-</div>
 
 @stop

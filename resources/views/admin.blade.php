@@ -27,7 +27,7 @@
                         <td>Rp. {{$car->harga}}</td>
                         <td><img src="{{asset($car->path) }}" style="width:50px;" alt=""></td>
                         <td>
-                            <a class="edit" href="#"><button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
+                            <a class="edit" href="/admin/edit-car/{{$car->id}}"><button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i>Edit</button></a>
                             <form action="/admin/car/delete/{{ $car->id }}" method="get">
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Hapus</button>
                             </form>
@@ -35,12 +35,9 @@
                     </tr>
                     @empty
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Data Empty</td>
-                        <td></td>
-                        <td></td>
+
+                        <td class="text-center" colspan="6">Data Empty</td>
+
                     </tr>
                     @endforelse
                 </tbody>

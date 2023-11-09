@@ -33,6 +33,9 @@ Route::get('/rating', [HistoryController::class, 'index'])->name('/rating')->mid
 Route::post('/submit-rating', [HistoryController::class, 'store'])->name('/submit-rating')->middleware('auth');
 Route::get('/admin/add-car', [AdminController::class, 'formcar'])->name('admin/add-car')->middleware('auth');
 Route::post('/admin/add-car', [AdminController::class, 'store'])->name('admin/add-car')->middleware('auth');
+Route::get('/admin/edit-car/{id}', [CarController::class, 'show'])->name('admin/edit-car/{id}')->middleware('auth');
+Route::post('/admin/edit-car/{id}', [CarController::class, 'edit'])->name('admin/edit-car/{id}')->middleware('auth');
+
 
 Route::get('/transaction', [BookingController::class, 'index'])->name('/transaction')->middleware('auth');
 Route::get('/transaction/{id}', [BookingController::class, 'store'])->name('/transaction/{id}')->middleware('auth');
