@@ -10,7 +10,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
+                        <th scope="col">No.</th>
                         <th scope="col">Car Name</th>
                         <th scope="col">Capacity</th>
                         <th scope="col">Price</th>
